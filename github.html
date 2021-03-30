@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Stackoverflow Jobs API</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="card col-md-8 mx-auto">
+        <div class = "card-header">
+            <span class="font-weight-bold">Get Stackoverflow</span>
+        </div>
+        <div class="card-body">
+            <div class="jumbotron">
+            <form id="regForm" action="" method="POST">
+                <div class="form-group">
+                    <label>Search Query :</label>
+                    <input type="text" class="form-control" name="q" pattern="[a-zA-Z0-9!@#$%&_./()\\-]{6,}"  title="Unrecognized Character" placeholder="Search term (e.g. ruby, java)">
+                </div>
+
+                <div class="form-group">
+                    <label>Location :</label>
+                    <input type="text" class="form-control" name="l" placeholder="A city name, zip code, or other location search term.">
+                </div>
+
+                <div class="form-group"> 
+                    <label>Technology Liked:</label>  
+                    <input type="text" class="form-control" name="tl">
+                </div> 
+
+                <div class="form-group"> 
+                    <label>Technology Disliked:</label>  
+                    <input type="text" class="form-control" name="td">
+                </div> 
+
+                <div class="form-group">  
+                    <label>Minimum Salary:</label>
+                    <input type="text" class="form-control" name="s" placeholder="Minimum Salary">
+                </div>  
+
+                <div class="form-group">  
+                    <label>Currency:</label>
+                    <input type="text" class="form-control" name="c" placeholder="Currency (USD, etc)>
+                </div>  
+
+                <div class="form-group">  
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" class="form-check-input" name="r">
+                        <label>Remote</label>
+                    </div>
+                </div>  
+
+                <div class="form-group">  
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" class="form-check-input" name="full_time">
+                        <label>Limit results to full time</label>
+                    </div>
+                </div>  
+                  <button type="button" class="btn btn-primary" onclick="sendRequest()">Get Jobs</button>
+                
+                <div class="form-group mt-3">
+                    <!-- <% if(error !== undefined){ %>
+                        <div class="text-white bg-danger ">
+                            <%= error %>
+                        </div>
+                    <% } %> -->
+                </div>
+            </form>
+            </div>
+
+            <div class="text-center" id="resultNode">
+                <h3>Jobs Result</h3>
+                <div></div>
+            </div>
+        </div>
+        <div class="card-footer">
+        </div>
+    </div>
+</body>
+<script>
+    const resultNode = document.getElementById("resultNode")
+        function sendRequest() {
+            var form = new URLSearchParams(new FormData(document.getElementById("regForm")));
+            fetch("getStackoverflowJobs",{
+                body : form,
+                method : "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                }
+            })  .then(response => console.log(response))
+        }
+
+        
+
+</script>
+</html>
