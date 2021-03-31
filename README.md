@@ -1,1 +1,3 @@
 # JobAPI
+
+Currently waiting for Github Student Developer Pack request approval to use online hosting (i.e. Digital Ocean)....
